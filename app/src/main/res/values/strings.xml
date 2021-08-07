@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BLOCKS</string>
+    <string name="return_dialog_title">- Return stage select</string>
+    <string name="return_dialog_message">
+        If you return stage select, this stage start from the biggining next time.
+        </string>
+    <string name="restart_dialog_title">- Restart this stage</string>
+    <string name="restart_dialog_message">Starting from the biggining at this stage</string>
+</resources>
