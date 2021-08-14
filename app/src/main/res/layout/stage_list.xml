@@ -477,6 +477,15 @@
 			     </LinearLayout>
 	        </FrameLayout>
 	    </LinearLayout>
+		<LinearLayout
+			android:id="@+id/stage_list_ad"
+			android:layout_height="@dimen/ad_height_in_play"
+			android:layout_width="@dimen/ad_width_in_play"
+			android:orientation="horizontal"
+			android:layout_gravity="bottom|center_horizontal"
+			android:layout_marginStart="@dimen/ad_adjust_margin"
+			android:background="@color/gray">
+		</LinearLayout>
 	</LinearLayout>
 	<ImageView
 	    android:id="@+id/previous_page"

@@ -29,6 +29,10 @@ public class QuaternionUIConnector {
 	private QuaternionUIConnector(){
 	}
 	
+	public static float getHorizontalDegree(){
+		return (float)(( horizontalRadian / Math.PI) + 180.0);
+	}
+	
 	public static QuaternionUIConnector create(FrustumCamera camera){
 		_frustumCamera   = camera;
 		cameraDistance   = CurrentScene.getEyeDistance();

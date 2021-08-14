@@ -41,6 +41,14 @@ public class ObjManager {
 	private ObjManager(){
 	}
 	
+	public static void copyFlyweightBar(GLInferiorObject miniBar){
+		_objLoader.registerFlyWeightBar( miniBar );
+	}
+	
+	public static GLBaseObject getBlueAreaCube(){
+		return _wallObjs.get( 0 );
+	}
+	
 	public static ObjManager getInstance(Context context){
 		long startTime = System.currentTimeMillis();
 		_texManager      = new TexManager(context);
@@ -150,9 +158,8 @@ public class ObjManager {
 	public void affineProcess(float[] vMatrix, float[] pMatrix,
 			ArrayList<GLBaseObject> objList){
 		for(int i=0,j=objList.size();i<j;i++){
-			float[] MVMatrix  = new float[16];
+			float[] MVMatrix  = setAffine(objList,vMatrix.clone(),i);
 			float[] MVPMatrix = new float[16];
-			MVMatrix = setAffine(objList,vMatrix.clone(),i);
 			Matrix.multiplyMM(MVPMatrix,0,pMatrix,0,MVMatrix,0);
 			objList.get(i).setMVPMatrix(MVPMatrix);
 		}
@@ -347,7 +354,7 @@ public class ObjManager {
 					((GLInferiorTexObject)_objList.get(k)).setBesideWall(true);
 					((GLInferiorTexObject)_objList.get(k)).downHighlightMtl();
 					cubeCountInNiche++;
-				}else if(_objList.get(k).getPlaceY() == 1.0f){
+				}else if(_objList.get(k).getPlaceX() == 1.0f){
 					((GLInferiorTexObject)_objList.get(k)).setBesideWall(true);
 					((GLInferiorTexObject)_objList.get(k)).downHighlightMtl();
 					cubeCountInNiche++;

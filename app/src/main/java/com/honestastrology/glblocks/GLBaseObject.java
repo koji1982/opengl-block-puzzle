@@ -57,6 +57,10 @@ public class GLBaseObject {
 		else setWallBool(false);
 	}
 	
+	public boolean isBesideWall(){
+		return false;
+	}
+	
 	public void setIds(int[] ids){
 		bufferIds=ids;
 	}

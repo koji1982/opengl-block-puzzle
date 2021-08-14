@@ -195,6 +195,7 @@ public class GLInferiorTexObject extends GLBaseObject implements Cloneable {
 		}
 	}
 	
+	@Override
 	public boolean isBesideWall() {
 		return isBesideWall;
 	}

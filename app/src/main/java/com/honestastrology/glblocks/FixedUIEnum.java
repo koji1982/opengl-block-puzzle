@@ -12,8 +12,8 @@ public enum FixedUIEnum {
 	axisYRadio(7,new float[]{0.9f,0.55f},150.0f,true),
 	axisZRadio(8,new float[]{0.9f,0.25f},150.0f,true),
 	returnButton(9,new float[]{-0.9f,0.9f},150.0f,false),
-	restartButton(10,new float[]{-0.688f,0.9f},150.0f,false),
-	bgmButton(11,new float[]{-0.46f,0.9f},150.0f,false),
+	restartButton(10,new float[]{-0.7f,0.9f},150.0f,false),
+	bgmButton(11,new float[]{-0.48f,0.9f},150.0f,false),
 	readyButton(12,new float[]{0.65f,0.82f},190.0f,false),
 	nicheButton(13,new float[]{0.40f,0.82f},190.0f,false),
 	setButton(14,new float[]{0.00f,0.82f},190.0f,false);

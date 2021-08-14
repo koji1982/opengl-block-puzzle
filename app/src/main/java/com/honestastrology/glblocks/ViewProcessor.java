@@ -7,8 +7,8 @@ import android.util.Log;
 public class ViewProcessor {
 	
 	private ModelProcessor _modelProcessor;
-	private UIManager _uiManager;
-	private FrustumCamera _frustumCamera;
+	private UIManager 	   _uiManager;
+	private FrustumCamera  _frustumCamera;
 	
 	private int[] _viewport;
 	private float aspect;
@@ -57,6 +57,15 @@ public class ViewProcessor {
 	
 	public float[] getPMatrix(){
 		return (float[])_projectionMatrix.clone();
+	}
+	
+	public float[] computeVPMatrix(){
+		Matrix.setIdentityM( _VPMatrix, 0);
+		Matrix.multiplyMM(
+						_VPMatrix, 0,
+						getPMatrix(), 0,
+						getVMatrix(), 0);
+		return _VPMatrix;
 	}
 	
 	public void setViewport(int width,int height){

@@ -59,7 +59,7 @@ public class GLBlocksActivity extends BlocksCommonActivity {
 	public static final int  RETURN_BUTTON = 9;
 	public static final int RESTART_BUTTON = 10;
 	private Intent intent;
-	private int adRate = 2; // * 10 % 広告表示の確率
+	private int adRate = 20; // * 10 % 広告表示の確率
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -123,19 +123,21 @@ public class GLBlocksActivity extends BlocksCommonActivity {
 	private static void playStageSong(){
 		if(_sceneNumber < 21){
 			SoundManager.changeSong(SoundManager.SONG_STAGE_BLUE);
-		}else{
+		}else if( _sceneNumber < 41){
 			SoundManager.changeSong(SoundManager.SONG_STAGE_GREEN);
+		}else {
+			SoundManager.changeSong(SoundManager.SONG_STAGE_GRAY);
 		}
 	}
 	
 	protected void onPause(){
 		super.onPause();
-		_glBaseSurfaceView.onPause();
+//		_glBaseSurfaceView.onPause();
 	}
 	
 	protected void onResume(){
 		super.onResume();
-		_glBaseSurfaceView.onResume();
+//		_glBaseSurfaceView.onResume();
 	}
 	
 	public static int getSceneNumber(){
@@ -167,8 +169,9 @@ public class GLBlocksActivity extends BlocksCommonActivity {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				createIntentForReturnStageSelect();
-				adRate = 2;
-				adDecision(adRate);
+//				adRate = 15;
+//				adDecision(adRate);
+				launchIntent();
 			}
 		})
 		.setNegativeButton("CANCEL", new DialogInterface.OnClickListener(){
@@ -205,9 +208,10 @@ public class GLBlocksActivity extends BlocksCommonActivity {
 			
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				setRestarting(true);
-				adRate = 2;
-				adDecision(adRate);
+//				setRestarting(true);
+//				adRate = 20;
+//				adDecision(adRate);
+				restartGLSurface();
 			}
 		})
 		.setNegativeButton("CANCEL", new DialogInterface.OnClickListener(){
@@ -241,6 +245,9 @@ public class GLBlocksActivity extends BlocksCommonActivity {
 		setGLSurfaceView();
 		SystemAnalyzer.resetMoveCount();
 		
+		AdState.makeBannerAd(
+						this ,
+						findViewById( R.id.on_play_ad_layout ));
 	}
 	
 	private void createIntentForReturnStageSelect(){
@@ -260,25 +267,26 @@ public class GLBlocksActivity extends BlocksCommonActivity {
 		int result = SystemAnalyzer.getMoveCount();
 		StagePreference.putResult(_sceneNumber, result);
 		createIntentToConnectActivity();
-		decideAdRate(result);
-		adDecision(adRate);
+//		decideAdRate(result);
+//		adDecision(adRate);
+		launchIntent();
 	}
 	
 	private void decideAdRate(int result){
 		if(result <= _bestScore){
 			adRate = 0;
 		}else{
-			adRate = 3;
+			adRate = 15;
 		}
 	}
 	
 	private void launchIntent(){
-		if(isRestarting()){
-			setRestarting(false);
-			
-			restartGLSurface();
-			return;
-		}
+//		if(isRestarting()){
+//			setRestarting(false);
+//			
+//			restartGLSurface();
+//			return;
+//		}
 		changingActivityBool(true);
 		startActivity(intent);
 		finish();
@@ -294,6 +302,7 @@ public class GLBlocksActivity extends BlocksCommonActivity {
 	
 	private void adDecision(int rate){
 		if( randomInt() < rate ){
+		    launchIntent();
 			showAd();
 		} else {
 			launchIntent();
@@ -319,7 +328,7 @@ public class GLBlocksActivity extends BlocksCommonActivity {
 	
 	private int randomInt(){
 		Random random = new Random();
-		int    n     = random.nextInt(10);
+		int    n     = random.nextInt(100);
 		return n;
 	}
 

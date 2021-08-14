@@ -10,13 +10,17 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.interstitial.InterstitialAd;
 
 import com.google.android.gms.ads.*;
 
+import java.util.Random;
+
 public class ConnectActivity extends Activity implements OnClickListener{
+	
+	private static final int RATE_ZERO = 0;
+	private static final int LOW_RATE  = 12;
+	private static final int HIGH_RATE = 30;
 	
 	private String           _mobileId = "73A2636C50CF242959E23260DE976B1B";
 	private String _interstitialUnitId = "ca-app-pub-2263172161263292/7094260160";
@@ -34,6 +38,8 @@ public class ConnectActivity extends Activity implements OnClickListener{
 	
 	private Handler _handler = new Handler();
 	
+	private boolean _isAlreadyClicked = false;
+	
 	private final int RETURN_IMAGE = 0;
 	private final int LIST_IMAGE   = 1;
 	private final int NEXT_IMAGE   = 2;
@@ -46,6 +52,7 @@ public class ConnectActivity extends Activity implements OnClickListener{
 	public final static String LAST_SCORE = "last_score";
 	
 	private static boolean callingSoundEffect = false;
+	private static int	   _adRateByScore	  = 0;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState){
@@ -53,14 +60,14 @@ public class ConnectActivity extends Activity implements OnClickListener{
 		CompatibleOsManager.windowSetting(this);
 		setContentView(R.layout.connect_activity);
 		
-		initBannerAd();
+		initializeAd();
 		
 		checkScoreData();
 		callScores();
 		setImageOnClick();
 		Log.e("sound",String.valueOf(isCallingSoundEffect()));
 		setDelayedSound();
-		SoundManager.stopSong(SoundManager.NOT_APPLICABLE);
+		SoundManager.stopSong();
 	}
 	
 	private void checkScoreData(){
@@ -103,16 +110,19 @@ public class ConnectActivity extends Activity implements OnClickListener{
 				score1.setImageResource(R.drawable.nostar);
 				score2.setImageResource(R.drawable.star);
 				score3.setImageResource(R.drawable.nostar);
+				_adRateByScore = HIGH_RATE;
 			}else if(_yourScore <= _bestScore){
 				_scoreComment = COMMENT_PERFECT;
 				score1.setImageResource(R.drawable.star);
 				score2.setImageResource(R.drawable.star);
 				score3.setImageResource(R.drawable.star);
+				_adRateByScore = RATE_ZERO;
 			}else{
 				_scoreComment = COMMENT_GOOD;
 				score1.setImageResource(R.drawable.star);
 				score2.setImageResource(R.drawable.star);
 				score3.setImageResource(R.drawable.nostar);
+				_adRateByScore = LOW_RATE;
 			}
 		}else{
 			_scoreComment = COMMENT_MISS;
@@ -142,11 +152,16 @@ public class ConnectActivity extends Activity implements OnClickListener{
 	private void setDelayedSound(){
 		if(!isCallingSoundEffect())return;
 		setCallingSoundEffect(false);
+//		SoundManager.playSoundEffect(7);
 		_handler.postDelayed(new Runnable(){
 			@Override
 			public void run() {
-				SoundManager.playSoundEffect(7);
-			}}, 800);
+				if( isCleared ){
+					SoundManager.playSoundEffect(7);
+				} else {
+					SoundManager.playSoundEffect(8);
+				}
+			}}, 500);
 	}
 	
 	
@@ -163,20 +178,30 @@ public class ConnectActivity extends Activity implements OnClickListener{
 		adview.loadAd(adrequest);
 	}
 	
-	public void initBannerAd(){
-		MobileAds.initialize(this, new OnInitializationCompleteListener() {
-			@Override
-			public void onInitializationComplete(InitializationStatus initializationStatus) {
-			}
-		});
-		
-		_adView = findViewById(R.id.ad_view);
-		AdRequest adRequest = new AdRequest.Builder().build();
-		_adView.loadAd(adRequest);
+	private void initializeAd(){
+		AdState.initialize( this );
+		AdState.makeBannerAd(
+				this,
+				findViewById( R.id.connect_ad ));
+		AdState.prepareInterstitialAd( this );
 	}
+	
+//	public void initBannerAd(){
+//		MobileAds.initialize(this, new OnInitializationCompleteListener() {
+//			@Override
+//			public void onInitializationComplete(InitializationStatus initializationStatus) {
+//			}
+//		});
+//		
+//		_adView = findViewById(R.id.ad_view);
+//		AdRequest adRequest = new AdRequest.Builder().build();
+//		_adView.loadAd(adRequest);
+//	}
 
 	@Override
 	public void onClick(View v) {
+		if( _isAlreadyClicked ) return;
+		
 		int id = v.getId();
 		Intent intent = null;
 		switch(id){
@@ -193,10 +218,26 @@ public class ConnectActivity extends Activity implements OnClickListener{
 			intent.putExtra(StageListView.STAGE_NUMBER, _stageNumber+1);
 			break;
 		}
+		_isAlreadyClicked = true;
 		startActivity(intent);
 		finish();
+		
+		if( id != NEXT_IMAGE ) return;
+		if( !AdState.isInterstitialPrepared() ) return;
+		if( !isBelowRandomInt( _adRateByScore ) ) return;
+		AdState.showInterstitialAd( this );
 	}
-
+	
+	private boolean isBelowRandomInt(int rate){
+		return getRandomInt() < rate;
+	}
+	
+	private int getRandomInt(){
+		Random random = new Random();
+		int    n     = random.nextInt(100);
+		return n;
+	}
+	
 	public static boolean isCallingSoundEffect() {
 		return callingSoundEffect;
 	}

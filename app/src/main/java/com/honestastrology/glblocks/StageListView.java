@@ -19,10 +19,13 @@ public class StageListView extends BlocksCommonActivity implements View.OnClickL
 	private ImageView _toNextPage;
 	private FrameLayout _wholeFrame;
 	private LinearLayout _outerLinear;
+	private LinearLayout _stageListAd;
 	private int          _currentPage;
 	private int          _clearedStage;
 	private Map<Integer,Integer> _resultMap;
 	private int          _slideValue = 0;
+	
+	private boolean      _isAlreadyClicked = false;
 	
 	private final int TO_PREVIOUS_PAGE = -3;
 	private final int TO_NEXT_PAGE     = -1;
@@ -42,7 +45,8 @@ public class StageListView extends BlocksCommonActivity implements View.OnClickL
 		setContentView( R.layout.stage_list );
 		settingView();
 		if( AdState.isValid() ){
-			AdState.makeBannerAd( this, _outerLinear );
+			_stageListAd = findViewById( R.id.stage_list_ad );
+			AdState.makeBannerAd( this, _stageListAd );
 		}
 		SlideAnimation.createInstance(this);
 		decideSlideAnim();
@@ -184,6 +188,8 @@ public class StageListView extends BlocksCommonActivity implements View.OnClickL
 	
 	@Override
 	public void onClick(View v) {
+		if( _isAlreadyClicked ) return;
+		
 		int clickedId  = v.getId();
 		if(clickedId < 0){
 			movePage(clickedId);
@@ -212,6 +218,7 @@ public class StageListView extends BlocksCommonActivity implements View.OnClickL
 			intent.putExtra(SLIDE_ANIM , TO_LEFT);
 		}
 		changingActivityBool(true);
+		_isAlreadyClicked = true;
 		startActivity(intent);
 		finish();
 	}
@@ -221,6 +228,7 @@ public class StageListView extends BlocksCommonActivity implements View.OnClickL
 		Intent intent = new Intent(this, GLBlocksActivity.class);
 		intent.putExtra(STAGE_NUMBER,stagenumber);
 		changingActivityBool(true);
+		_isAlreadyClicked = true;
 		startActivity(intent);
 		finish();
 	}
@@ -229,7 +237,7 @@ public class StageListView extends BlocksCommonActivity implements View.OnClickL
 		int resource = 0;
 		if(stageIndex < 21){
 			resource = R.drawable.blue_stage;
-		}else if(stageIndex > 20 && stageIndex < 41){
+		}else if(stageIndex > 20 && stageIndex < 60){
 			resource = R.drawable.green_stage;
 		}
 		return resource;

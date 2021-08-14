@@ -52,6 +52,8 @@ public class StageDataArray {
 		_arrayList.add(new StageData(7,14));
 		_arrayList.add(new StageData(4,12));
 		_arrayList.add(new StageData(5,15));//index40,stage40
+		_arrayList.add(new StageData(3,15));
+		_arrayList.add(new StageData(4,15));
 	}
 	
 	public static int getBestScore(int index){

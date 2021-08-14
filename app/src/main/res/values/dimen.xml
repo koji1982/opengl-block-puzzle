@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="ad_padding_top">5dp</dimen>
+    <dimen name="ad_padding_horizontal">5dp</dimen>
+    <dimen name="ad_area_width">330dp</dimen>
+    <dimen name="ad_area_height">60dp</dimen>
+    <dimen name="ad_width_in_play">360dp</dimen>
+    <dimen name="ad_height_in_play">70dp</dimen>
+    <dimen name="ad_adjust_margin">120dp</dimen>
+</resources>

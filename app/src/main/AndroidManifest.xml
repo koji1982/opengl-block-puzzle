@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.honestastrology.glblocks"
-    android:versionCode="17"
-    android:versionName="2.2"
     android:installLocation="auto">
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -22,12 +20,11 @@
             android:value="@integer/google_play_services_version"/>
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~6300978111"
+            android:value="ca-app-pub-2263172161263292~9857753365"
         />
         <!--            android:value="ca-app-pub-3940256099942544~6300978111" //バナー-->
         <!--            android:value="ca-app-pub-3940256099942544~8691691433" //動画-->
         <!--            android:value="ca-app-pub-3940256099942544~1033173712" //インタースティシャル-->
-        <!--            android:value="ca-app-pub-2263172161263292~7094260160" //ID-->
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"

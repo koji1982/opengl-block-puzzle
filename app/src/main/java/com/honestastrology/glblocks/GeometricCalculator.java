@@ -43,6 +43,8 @@ public class GeometricCalculator {
 	public static final int MOVE_Z_PLUS  = 4;
 	public static final int MOVE_Z_MINUS = 5;
 	
+	private static int _sceneNumber;
+	
 	public GeometricCalculator(ViewProcessor viewprocessor){
 		_viewProcessor = viewprocessor;
 	}
@@ -52,6 +54,7 @@ public class GeometricCalculator {
 		_projectionMatrix = _viewProcessor.getPMatrix();
 		selectedIndex     = -1;
 		lastSelectedIndex = -1;
+		_sceneNumber	  = GLBlocksActivity.getSceneNumber();
 		Log.e("geometric calculator","geo initialize");
 	}
 	
@@ -100,6 +103,7 @@ public class GeometricCalculator {
 		
 		selectRay:for(int i=0,j=objList.size();i<j;i++){
 			if(objList.get(i).isWall())continue selectRay;
+			if( (35 < _sceneNumber ) && objList.get(i).isBesideWall() )continue selectRay;
 			objPlace  = objList.get(i).getPlace();
 			nearToObj = BaseCalculator.calcDistance(objPlace, rayNear);
 			dotACAC   = BaseCalculator.calcDot(nearToObj, nearToObj);
@@ -237,7 +241,7 @@ public class GeometricCalculator {
 					}
 				}
 			}else{
-				// x�������p�x�O�Ƃ���
+				// x方向を角度０とする
 				swipeAndYAxisRad=BaseCalculator.calcVectorTheta(xy, screenYVector);
 				if(swipeAndYAxisRad<Math.PI/12){
 					return 3;

@@ -24,50 +24,34 @@ import static android.content.ContentValues.TAG;
 
 class AdState {
     
-    private static final String INTERSTITIAL_UNIT_ID = "ca-app-pub-2263172161263292/7094260160";
     private static final String INTERSTITIAL_TEST_ID = "ca-app-pub-3940256099942544/1033173712";
     private static final String MOVIE_TEST_ID        = "ca-app-pub-3940256099942544/8691691433";
     private static final String BANNER_TEST_ID       = "ca-app-pub-2263172161263292/2334486566";
     
+    private static final String INTERSTITIAL_AD_ID   = "ca-app-pub-2263172161263292/1566155233";
+    private static final String BANNER_AD_ID         = "ca-app-pub-2263172161263292/6435338533";
+    
     private static AdView         _bannerAd;
     private static InterstitialAd _interstitialAd;
     
+    private static boolean        _isInitialized = false;
+    
     static void initialize(Activity activity){
-        MobileAds.initialize(
-                        activity,
-                        (initializationStatus) -> {});
+        if ( !_isInitialized ){
+            MobileAds.initialize(
+                    activity,
+                    (initializationStatus) -> {});
+            _isInitialized = true;
+        }
     }
     
     static boolean isValid(){
         return true;
     }
     
-    static String getInterstitialUnitId(){
-        return INTERSTITIAL_UNIT_ID;
-    }
-    
-    static String getInterstitialTestId(){
-        return INTERSTITIAL_TEST_ID;
-    }
-    
-    static String getMovieTestId(){
-        return MOVIE_TEST_ID;
-    }
-    
-    static String getBannerTestId(){
-        return BANNER_TEST_ID;
-    }
-    
-    static void showBannerAd(Activity activity){
-//        _adView = activity.findViewById(R.id.gl_ad);
-        AdRequest adRequest = new AdRequest.Builder().build();
-//		_adView.setAdSize( AdSize.BANNER );
-        _bannerAd.loadAd(adRequest);
-    }
-    
     static void makeBannerAd(Activity activity, ViewGroup adLayout){
         _bannerAd = new AdView(activity);
-        _bannerAd.setAdUnitId( BANNER_TEST_ID );
+        _bannerAd.setAdUnitId( BANNER_AD_ID );
         _bannerAd.setAdSize( AdSize.BANNER );
         //LayoutParams側のgravityは他のViewに対しての位置関係(xmlのlayout_gravity)
         //を表し、LinearLayout側のsetGravity()はその内側のchildViewに掛かる
@@ -87,7 +71,10 @@ class AdState {
     }
     
     static void showInterstitialAd(Activity activity){
-        _interstitialAd.show( activity );
+        if( _interstitialAd != null ){
+            SoundManager.startAd();
+            _interstitialAd.show( activity );
+        }
     }
     
     static void prepareInterstitialAd(Activity activity){
@@ -95,9 +82,8 @@ class AdState {
             AdRequest adRequest = new AdRequest.Builder().build();
             InterstitialAd.load(
                     activity,
-//					_interstitialTestId,
-                    AdState.getMovieTestId(),
-//					_interstitialUnitId,
+                    INTERSTITIAL_AD_ID,
+//                    AdState.getMovieTestId(),
                     adRequest,
                     new InterstitialAdLoadCallback() {
                         @Override
@@ -106,13 +92,13 @@ class AdState {
                             // an ad is loaded.
                             _interstitialAd = interstitialAd;
                             setAdScreenCallback( activity );
-                            Log.i(TAG, "onAdLoaded");
+                            Log.i("Interstitial", "onAdLoaded");
                         }
                         
                         @Override
                         public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                             // Handle the error
-                            Log.i(TAG, loadAdError.getMessage());
+                            Log.i("Interstitial", loadAdError.getMessage());
                             _interstitialAd = null;
                             // Gets the domain from which the error came.
                             String errorDomain = loadAdError.getDomain();
@@ -132,7 +118,7 @@ class AdState {
                             // Gets the cause of the error, if available.
                             AdError cause = loadAdError.getCause();
                             // All of this information is available via the error's toString() method.
-                            Log.d("Ads", loadAdError.toString());
+                            Log.d("Interstitial", loadAdError.toString());
                         }
                     });
         });
@@ -143,14 +129,18 @@ class AdState {
             @Override
             public void onAdDismissedFullScreenContent() {
                 // Called when fullscreen content is dismissed.
-                Log.d("TAG", "The ad was dismissed.");
+                Log.d("Interstitial", "The ad was dismissed.");
+                SoundManager.dismissAd();
+                SoundManager.resumeSong();
                 prepareInterstitialAd( activity );
             }
             
             @Override
             public void onAdFailedToShowFullScreenContent(AdError adError) {
                 // Called when fullscreen content failed to show.
-                Log.d("TAG", "The ad failed to show.");
+                _interstitialAd = null;
+                prepareInterstitialAd( activity );
+                Log.d("Interstitial", "The ad failed to show.");
             }
             
             @Override
@@ -159,7 +149,7 @@ class AdState {
                 // Make sure to set your reference to null so you don't
                 // show it a second time.
                 _interstitialAd = null;
-                Log.d("TAG", "The ad was shown.");
+                Log.d("Interstitial", "The ad was shown.");
             }
         });
     }

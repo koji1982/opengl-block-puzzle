@@ -93,6 +93,10 @@ public class ObjLoader {
 		return barObjs;
 	}
 	
+	public void registerFlyWeightBar(GLInferiorObject miniBar){
+		miniBar.setFlyweightModel( _flyweightBar );
+	}
+	
 	public ArrayList<GLBaseObject> update(int sceneNumber){
 		return null;
 	}

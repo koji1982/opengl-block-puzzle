@@ -40,18 +40,11 @@
     </LinearLayout>
 	<LinearLayout
 		android:id="@+id/on_play_ad_layout"
-		android:layout_height="match_parent"
-		android:layout_width="match_parent"
+		android:layout_height="@dimen/ad_height_in_play"
+		android:layout_width="@dimen/ad_width_in_play"
 		android:orientation="horizontal"
-		android:layout_gravity="bottom">
-<!--		<com.google.android.gms.ads.AdView-->
-<!--			xmlns:ads="http://schemas.android.com/apk/res-auto"-->
-<!--			android:id="@+id/gl_ad"-->
-<!--			android:layout_width="match_parent"-->
-<!--			android:layout_height="wrap_content"-->
-<!--			android:layout_gravity="bottom|center_horizontal"-->
-<!--			ads:adSize="BANNER"-->
-<!--			ads:adUnitId="ca-app-pub-3940256099942544/6300978111">-->
-<!--		</com.google.android.gms.ads.AdView>-->
+		android:layout_gravity="bottom|center_horizontal"
+		android:layout_marginStart="@dimen/ad_adjust_margin"
+		android:background="@color/gray">
 	</LinearLayout>
 </FrameLayout>

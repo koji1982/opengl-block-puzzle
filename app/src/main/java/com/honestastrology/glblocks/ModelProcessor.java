@@ -87,7 +87,7 @@ public class ModelProcessor {
 	}
 	
 	public FixedUIEnum[] createUI(){
-		FixedUIEnum[] uiEnums = UIManager.createUI();
+		FixedUIEnum[] uiEnums = UIManager.createUI( _viewProcessor );
 		_uiManager            = UIManager.getInstance();
 		return uiEnums;
 	}

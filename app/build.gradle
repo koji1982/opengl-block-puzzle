@@ -7,17 +7,18 @@ android {
 
     defaultConfig {
         applicationId "com.honestastrology.glblocks"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode 30
+        versionName "3.101"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
