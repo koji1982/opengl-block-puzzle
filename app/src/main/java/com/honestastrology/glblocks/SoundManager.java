@@ -184,9 +184,9 @@ public class SoundManager {
 	
 	
 	private static void setupSoundPool(){
-		_soundPool         = new SoundPool(9, AudioManager.STREAM_MUSIC, 0);
-		_soundPoolIds      = new int[9];
-		_effectVolumes     = new float[9];
+		_soundPool         = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
+		_soundPoolIds      = new int[10];
+		_effectVolumes     = new float[10];
 		_soundPoolIds[0]   = _soundPool.load(_context,raw.metal_noise_c2,1);
 		 _effectVolumes[0] = 0.23f;
 		_soundPoolIds[1]   = _soundPool.load(_context,raw.metal_noise_g2,1);
@@ -205,8 +205,11 @@ public class SoundManager {
 		 _effectVolumes[7] = 0.10f;
 		_soundPoolIds[8]   = _soundPool.load(_context,raw.collision4,1);
 		_effectVolumes[8] = 0.65f;
-		 
-		 _finishEffect     = new SoundPool(1,AudioManager.STREAM_MUSIC,0);
+		_soundPoolIds[9]   = _soundPool.load(_context,raw.clear_0,1);
+		_effectVolumes[9] = 0.06f;
+		
+		
+		_finishEffect     = new SoundPool(1,AudioManager.STREAM_MUSIC,0);
 		 _finishId         = _finishEffect.load(_context, raw.finisheffect, 0);
 	}
 	
