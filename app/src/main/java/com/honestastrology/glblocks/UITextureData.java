@@ -55,7 +55,7 @@ public class UITextureData {
 		usualUIList.add(new Texture(10,"restart_button",256,256));
 		usualUIList.add(new Texture(11,"bgm_button",256,256));
 		usualUIList.add(new Texture(12,"multiplebutton",512,256));
-		usualUIList.add(new Texture(13,"blank_button",512,256));
+		usualUIList.add(new Texture(13,"auto_detect",512,256));
 		usualUIList.add(new Texture(14,"button0",512,256));//Inkscape y0(-22.00)y1(334.00)
 		usualUIList.add(new Texture(15,"button1",512,256));
 		usualUIList.add(new Texture(16,"button2",512,256));
@@ -77,7 +77,7 @@ public class UITextureData {
 		reactUIList.add(new Texture(10,"restart_button",256,256));
 		reactUIList.add(new Texture(11,"nobgm_button",256,256));
 		reactUIList.add(new Texture(12,"multiplereact",512,256));
-		reactUIList.add(new Texture(13,"blank_react",512,256));
+		reactUIList.add(new Texture(13,"auto_react",512,256));
 		reactUIList.add(new Texture(14,"react0",512,256));
 		reactUIList.add(new Texture(15,"react1",512,256));
 		reactUIList.add(new Texture(16,"react2",512,256));

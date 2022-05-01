@@ -15,7 +15,7 @@ public enum FixedUIEnum {
 	restartButton(10,new float[]{-0.7f,0.9f},150.0f,false),
 	bgmButton(11,new float[]{-0.48f,0.9f},150.0f,false),
 	readyButton(12,new float[]{0.9f,0.05f},190.0f,false),
-	nicheButton(13,new float[]{0.9f,-0.33f},190.0f,false),
+	nicheButton(13,new float[]{0.9f,-0.16f},190.0f,false),
 	setButton(14,new float[]{0.9f,0.25f},190.0f,false);
 	
 	private final int _id;
