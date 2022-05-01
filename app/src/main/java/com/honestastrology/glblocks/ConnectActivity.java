@@ -157,11 +157,12 @@ public class ConnectActivity extends Activity implements OnClickListener{
 			@Override
 			public void run() {
 				if( isCleared ){
-					SoundManager.playSoundEffect(7);
+//					SoundManager.playSoundEffect(7);
+					SoundManager.playSoundEffect(9);
 				} else {
 					SoundManager.playSoundEffect(8);
 				}
-			}}, 500);
+			}}, 5);
 	}
 	
 	
