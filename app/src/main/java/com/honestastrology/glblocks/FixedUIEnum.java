@@ -6,17 +6,17 @@ public enum FixedUIEnum {
 	downButton(1,new float[]{-0.68f,-0.8f},200.0f,false),
 	rightButton(2,new float[]{-0.48f,-0.5f},200.0f,false),
 	leftButton(3,new float[]{-0.88f,-0.5f},200.0f,false),
-	nearButton(4,new float[]{0.88f,-0.4f},200.0f,false),
-	farButton(5,new float[]{0.88f,-0.8f},200.0f,false),
-	axisXRadio(6,new float[]{0.9f,0.85f},150.0f,true),
-	axisYRadio(7,new float[]{0.9f,0.55f},150.0f,true),
-	axisZRadio(8,new float[]{0.9f,0.25f},150.0f,true),
+	nearButton(4,new float[]{0.65f,-0.73f},200.0f,false),
+	farButton(5,new float[]{0.88f,-0.73f},200.0f,false),
+	axisXRadio(6,new float[]{-0.07f,-0.77f},150.0f,true),
+	axisYRadio(7,new float[]{0.10f,-0.77f},150.0f,true),
+	axisZRadio(8,new float[]{0.27f,-0.77f},150.0f,true),
 	returnButton(9,new float[]{-0.9f,0.9f},150.0f,false),
 	restartButton(10,new float[]{-0.7f,0.9f},150.0f,false),
 	bgmButton(11,new float[]{-0.48f,0.9f},150.0f,false),
-	readyButton(12,new float[]{0.65f,0.82f},190.0f,false),
-	nicheButton(13,new float[]{0.40f,0.82f},190.0f,false),
-	setButton(14,new float[]{0.00f,0.82f},190.0f,false);
+	readyButton(12,new float[]{0.9f,0.05f},190.0f,false),
+	nicheButton(13,new float[]{0.9f,-0.33f},190.0f,false),
+	setButton(14,new float[]{0.9f,0.25f},190.0f,false);
 	
 	private final int _id;
 	private final float[] _allocation;
@@ -25,7 +25,7 @@ public enum FixedUIEnum {
 	private static final float _commonCameraRadius     = 0.14f;
 	private static final float _commonAxisRadius       = 0.1f;
 	private static final float _commonRectangleRadiusX = 0.11f;
-	private static final float _commonRectangleRadiusY = 0.75f;
+	private static final float _commonRectangleRadiusY = 0.12f;
 	
 	FixedUIEnum(int id,float[] allocation,float size,boolean radio){
 		_id         = id;

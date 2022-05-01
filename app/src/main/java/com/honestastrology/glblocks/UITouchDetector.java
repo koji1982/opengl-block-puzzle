@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class UITouchDetector {
 	
+	private static final float COLLECTION_VALUE_Y = 0.1f;
+	
 	private float displayWidth;
 	private float displayHeight;
 	
@@ -16,8 +18,8 @@ public class UITouchDetector {
 	
 	private final float DEVIDED_UPPER_Y = 0.8f;
 	private final float DEVIDED_RIGHT_X = 0.5f;
-	private final float DEVIDED_LEFT_X  = -0.2f;
-	private final float DEVIDED_LEFT_Y  = 0.0f;
+	private final float DEVIDED_LEFT_X  = 0.4f;
+	private final float DEVIDED_CENTER_Y = 0.0f;
 	
 	private ArrayList<float[]> uiLocationList = new ArrayList<float[]>();
 	
@@ -68,28 +70,13 @@ public class UITouchDetector {
 		if(x > DEVIDED_RIGHT_X){
 			if(detectUIRight(x,y))return;
 		}
-		if(x < DEVIDED_LEFT_X && y < DEVIDED_LEFT_Y){
+		if(x < DEVIDED_LEFT_X && y < DEVIDED_CENTER_Y){
 			if(detectUILeft(x,y))return;
 		}
 		detectInt = -1;
 	}
 	
 	private boolean detectUIUpper(float x,float y){
-		if(Math.abs(getUIX(MULTIPLE_BUTTON)-x)<commonRectangleRadiusX 
-				&& Math.abs(getUIY(MULTIPLE_BUTTON)-y) < commonRectangleRadiusY){
-			detectInt = MULTIPLE_BUTTON;
-			return true;
-		}
-		if(Math.abs(getUIX(NUMBER_BUTTON)-x)<commonRectangleRadiusX 
-				&& Math.abs(getUIY(NUMBER_BUTTON)-y) < commonRectangleRadiusY){
-			detectInt = NUMBER_BUTTON;//MULTIPLE と同じ動作
-			return true;
-		}
-		if(Math.abs(getUIX(NICHE_BUTTON)-x)<commonRectangleRadiusX
-				&& Math.abs(getUIY(NICHE_BUTTON)-y) < commonRectangleRadiusY){
-			detectInt = NICHE_BUTTON;
-			return true;
-		}
 		if(onCircle(RETURN_BUTTON,commonAxisRadius,x,y)){
 			detectInt = RETURN_BUTTON;
 			return true;
@@ -114,16 +101,22 @@ public class UITouchDetector {
 			detectInt = FAR_BUTTON;
 			return true;
 		}
-		if(onCircle(AXIS_X_RADIO,commonAxisRadius,x,y)){
-			detectInt = AXIS_X_RADIO;
+		
+		//三つのrectangleボタン(multi３種)は下端を基準点として表示されているようなので
+		//y値の判定もそれに合わせて行う
+		if(Math.abs(getUIX(MULTIPLE_BUTTON)-x)<commonRectangleRadiusX
+				   && Math.abs( (getUIY(MULTIPLE_BUTTON)+COLLECTION_VALUE_Y) -y) < commonRectangleRadiusY){
+			detectInt = MULTIPLE_BUTTON;
 			return true;
 		}
-		if(onCircle(AXIS_Y_RADIO,commonAxisRadius,x,y)){
-			detectInt = AXIS_Y_RADIO;
+		if(Math.abs(getUIX(NUMBER_BUTTON)-x)<commonRectangleRadiusX
+				   && Math.abs((getUIY(NUMBER_BUTTON)+COLLECTION_VALUE_Y)-y) < commonRectangleRadiusY){
+			detectInt = NUMBER_BUTTON;//MULTIPLE と同じ動作
 			return true;
 		}
-		if(onCircle(AXIS_Z_RADIO,commonAxisRadius,x,y)){
-			detectInt = AXIS_Z_RADIO;
+		if(Math.abs(getUIX(NICHE_BUTTON)-x)<commonRectangleRadiusX
+				   && Math.abs((getUIY(NICHE_BUTTON)+COLLECTION_VALUE_Y) -y) < commonRectangleRadiusY){
+			detectInt = NICHE_BUTTON;
 			return true;
 		}
 		return false;
@@ -144,6 +137,18 @@ public class UITouchDetector {
 		}
 		if(onCircle(LEFT_BUTTON,commonCameraRadius,x,y)){
 			detectInt = LEFT_BUTTON;
+			return true;
+		}
+		if(onCircle(AXIS_X_RADIO,commonAxisRadius,x,y)){
+			detectInt = AXIS_X_RADIO;
+			return true;
+		}
+		if(onCircle(AXIS_Y_RADIO,commonAxisRadius,x,y)){
+			detectInt = AXIS_Y_RADIO;
+			return true;
+		}
+		if(onCircle(AXIS_Z_RADIO,commonAxisRadius,x,y)){
+			detectInt = AXIS_Z_RADIO;
 			return true;
 		}
 		return false;

@@ -5,11 +5,18 @@
 	android:layout_width="match_parent"
 	android:background="#111111">
 	<LinearLayout
-		android:background="#111111"
+		android:id="@+id/connect_ad"
+		android:layout_height="@dimen/ad_height_in_play"
+		android:layout_width="@dimen/ad_width_in_play"
+		android:orientation="horizontal"
+		android:layout_gravity="top|right"
+		android:background="@color/gray">
+	</LinearLayout>
+	<LinearLayout
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:orientation="vertical"
-		android:layout_gravity="center_horizontal|top">
+		android:layout_gravity="center_horizontal|center_vertical">
 	<TextView
 		android:id="@+id/stage_number"
 		android:textSize="25sp"
@@ -18,29 +25,6 @@
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
 		android:paddingTop="10dp"/>
-	<LinearLayout
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:orientation="horizontal"
-		android:layout_gravity="center_horizontal"
-		android:paddingTop="10dp">
-		<ImageView
-			android:id="@+id/return_image"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:src="@drawable/returnicon"/>
-		<ImageView
-			android:id="@+id/list_image"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:paddingRight="30dp"
-			android:paddingLeft="30dp"
-			android:src="@drawable/listicon"/>
-		<ImageView
-			android:id="@+id/next_image"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"/>
-	</LinearLayout>
 	<LinearLayout
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
@@ -92,15 +76,29 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"/>
-	</LinearLayout>
-	<LinearLayout
-		android:id="@+id/connect_ad"
-		android:layout_height="@dimen/ad_height_in_play"
-		android:layout_width="@dimen/ad_width_in_play"
-		android:orientation="horizontal"
-		android:layout_gravity="bottom|center_horizontal"
-		android:layout_marginStart="@dimen/ad_adjust_margin"
-		android:background="@color/gray">
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			android:layout_gravity="center_horizontal"
+			android:paddingTop="10dp">
+			<ImageView
+				android:id="@+id/return_image"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@drawable/returnicon"/>
+			<ImageView
+				android:id="@+id/list_image"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:paddingRight="30dp"
+				android:paddingLeft="30dp"
+				android:src="@drawable/listicon"/>
+			<ImageView
+				android:id="@+id/next_image"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"/>
+		</LinearLayout>
 	</LinearLayout>
 </FrameLayout>
 

@@ -60,7 +60,7 @@ class AdState {
                 = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        layoutParams.gravity = Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL;
+        layoutParams.gravity = Gravity.TOP | Gravity.END;
         _bannerAd.setLayoutParams( layoutParams );
         _bannerAd.loadAd( new AdRequest.Builder().build() );
         adLayout.addView(_bannerAd);

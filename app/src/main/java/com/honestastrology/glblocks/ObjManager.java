@@ -45,7 +45,7 @@ public class ObjManager {
 		_objLoader.registerFlyWeightBar( miniBar );
 	}
 	
-	public static GLBaseObject getBlueAreaCube(){
+	public static GLBaseObject getAreaCube(){
 		return _wallObjs.get( 0 );
 	}
 	
