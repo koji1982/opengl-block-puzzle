@@ -53,13 +53,13 @@ public class SceneData {
 				break;
 			case 3://min 3  6
 				cubeCount     = 16;
-				multipleCount = 0;
+				multipleCount = 1;
 				cubeType      = ObjLoader.BLUE_CUBE;
 				preStagePositionArray = new int[]{
-						1,4,1, 1,4,4, 3,4,1, 3,4,3,
-						1,3,1, 2,3,1, 3,3,1, 4,3,1,
-						1,2,1, 2,2,1, 3,2,1, 4,2,1,
-						1,1,1, 2,1,1, 3,1,1, 4,1,1
+						1,4,1, 2,4,4, 3,4,1, 4,4,1,
+						1,3,1, 2,3,4, 3,3,1, 4,3,1,
+						1,2,1, 2,2,4, 3,2,1, 4,2,1,
+						1,1,1, 2,1,4, 3,1,1, 4,1,1
 				};
 				stagePositionArray = convertPositionToFloat(preStagePositionArray);
 				stageEyeDistance   = 0.1f;
@@ -69,12 +69,12 @@ public class SceneData {
 				break;
 			case 4://min 7 12
 				cubeCount     = 16;
-				multipleCount = 0;
+				multipleCount = 1;
 				cubeType      = ObjLoader.BLUE_CUBE;
 				preStagePositionArray = new int[]{
 						1,4,3, 2,4,1, 3,4,1, 4,4,1,
-						2,2,3, 2,3,1, 3,4,3, 4,3,1,
-						1,2,1, 2,2,1, 3,2,1, 4,2,1,
+						1,3,1, 2,3,1, 3,4,3, 4,3,1,
+						2,2,3, 2,2,1, 3,2,1, 4,2,1,
 						1,1,1, 2,1,1, 4,2,3, 4,1,1
 				};
 				stagePositionArray = convertPositionToFloat(preStagePositionArray);
@@ -85,7 +85,7 @@ public class SceneData {
 				break;
 			case 5://min 7 9
 				cubeCount     = 16;
-				multipleCount = 0;
+				multipleCount = 1;
 				cubeType      = ObjLoader.BLUE_CUBE;
 				preStagePositionArray = new int[]{
 						1,4,1, 2,4,1, 4,4,4, 4,4,1,
