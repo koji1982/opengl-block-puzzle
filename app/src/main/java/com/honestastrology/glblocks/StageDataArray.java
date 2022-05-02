@@ -14,9 +14,9 @@ public class StageDataArray {
 		_arrayList.add(new StageData(10,15));
 		_arrayList.add(new StageData(3,6));
 		_arrayList.add(new StageData(5,9));
-		_arrayList.add(new StageData(3,6));
-		_arrayList.add(new StageData(7,12));
-		_arrayList.add(new StageData(7,9));//index5,stage5
+		_arrayList.add(new StageData(1,4));
+		_arrayList.add(new StageData(3,8));
+		_arrayList.add(new StageData(4,9));//index5,stage5
 		_arrayList.add(new StageData(3,8));
 		_arrayList.add(new StageData(4,8));
 		_arrayList.add(new StageData(5,9));
