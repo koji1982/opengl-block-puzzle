@@ -38,6 +38,7 @@ public class StagePreference {
 	public static void prepareAllResult(){
 		_resultMap = new HashMap<Integer,Integer>();
 		int clearedStage = _sharedPreferences.getInt(CLEARED_STAGE, 0);
+//		clearedStage = 42;
 		for(int i=1;i<=clearedStage;i++){
 			_resultMap.put(i,_sharedPreferences.getInt(STAGE_SUB_STRING + String.valueOf(i),100));
 		}
@@ -61,6 +62,7 @@ public class StagePreference {
 	
 	public static int getClearedStage(){
 		return _sharedPreferences.getInt(CLEARED_STAGE, 0);
+//		return 42;
 	}
 	
 	public static int getResult(int stageNumber){

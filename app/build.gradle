@@ -9,8 +9,8 @@ android {
         applicationId "com.honestastrology.glblocks"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 31
-        versionName "3.102"
+        versionCode 32
+        versionName "3.2"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
