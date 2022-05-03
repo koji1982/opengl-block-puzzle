@@ -1,5 +1,7 @@
 package com.honestastrology.glblocks;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class UITouchDetector {
@@ -40,6 +42,7 @@ public class UITouchDetector {
 	private final int NUMBER_BUTTON   = 14;
 	
 	private int detectInt           = -1;
+	private float _aspect;
 	
 	public UITouchDetector(FixedUIEnum[] uiEnums){
 		for(int i=0,j=uiEnums.length;i<j;i++){
@@ -49,11 +52,13 @@ public class UITouchDetector {
 		commonAxisRadius       = FixedUIEnum.getCommonAxisRadius();
 		commonRectangleRadiusX = FixedUIEnum.getCommonRectangleRadiusX();
 		commonRectangleRadiusY = FixedUIEnum.getCommonRectangleRadiusY();
+		
 	}
 	
 	public void setDisplaySize(float width,float height){
 		displayWidth  = width;
 		displayHeight = height;
+		_aspect          = (float)width / (float)height;
 	}
 	
 	public int touchDetect(float x,float y){
@@ -163,7 +168,18 @@ public class UITouchDetector {
 	}
 	
 	private boolean onCircle(int id, float rad, float x, float y){
-		return BaseCalculator.calcSquaredDist(getUIX(id), getUIY(id), x, y) < rad * rad;
+		Log.e("getUIX(id)", String.valueOf(getUIX(id)));
+		Log.e("getUIY(id)", String.valueOf(getUIY(id)));
+		Log.e("x", String.valueOf(x));
+		Log.e("y", String.valueOf(y));
+		Log.e("rad * rad", String.valueOf(rad*rad));
+		float correctedY = y / _aspect;
+		float correctedLocationY = getUIY(id) / _aspect;
+		Log.e("correctedY ", String.valueOf(correctedY));
+		boolean isDetect = BaseCalculator.calcSquaredDist(getUIX(id), correctedLocationY, x, correctedY) < rad * rad;
+		Log.e("isDetect ", String.valueOf(isDetect));
+//		return BaseCalculator.calcSquaredDist(getUIX(id), getUIY(id), x, y) < rad * rad;
+		return isDetect;
 	}
 	
 }

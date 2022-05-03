@@ -89,4 +89,8 @@ public class ViewProcessor {
 		Matrix.multiplyMM(_projectionMatrix,0,leftM,0,rightM,0);
 	}
 	
+	public float getAspect(){
+		return aspect;
+	}
+	
 }
