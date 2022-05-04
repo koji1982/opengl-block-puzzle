@@ -103,7 +103,7 @@ public class GeometricCalculator {
 		
 		selectRay:for(int i=0,j=objList.size();i<j;i++){
 			if(objList.get(i).isWall())continue selectRay;
-			if( (35 < _sceneNumber ) && objList.get(i).isBesideWall() )continue selectRay;
+			if( objList.get(i).isBesideWall() )continue selectRay;
 			objPlace  = objList.get(i).getPlace();
 			nearToObj = BaseCalculator.calcDistance(objPlace, rayNear);
 			dotACAC   = BaseCalculator.calcDot(nearToObj, nearToObj);
