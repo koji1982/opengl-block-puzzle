@@ -5,7 +5,7 @@ public class CurrentScene {
 	private static CurrentScene currentScene;
 	
 	
-	private int sceneNumber;
+	private static int sceneNumber;
 	private static int cubeType;
 	private static int cubeCount;
 	private static int multipleCount;
@@ -47,7 +47,9 @@ public class CurrentScene {
 		}
 	}
 	
-	
+	public static int getSceneNumber(){
+		return sceneNumber;
+	}
 	
 	public static float[] getScaleArray() {
 		return scaleArray;

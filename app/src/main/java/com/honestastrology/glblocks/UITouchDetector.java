@@ -168,18 +168,9 @@ public class UITouchDetector {
 	}
 	
 	private boolean onCircle(int id, float rad, float x, float y){
-		Log.e("getUIX(id)", String.valueOf(getUIX(id)));
-		Log.e("getUIY(id)", String.valueOf(getUIY(id)));
-		Log.e("x", String.valueOf(x));
-		Log.e("y", String.valueOf(y));
-		Log.e("rad * rad", String.valueOf(rad*rad));
 		float correctedY = y / _aspect;
 		float correctedLocationY = getUIY(id) / _aspect;
-		Log.e("correctedY ", String.valueOf(correctedY));
-		boolean isDetect = BaseCalculator.calcSquaredDist(getUIX(id), correctedLocationY, x, correctedY) < rad * rad;
-		Log.e("isDetect ", String.valueOf(isDetect));
-//		return BaseCalculator.calcSquaredDist(getUIX(id), getUIY(id), x, y) < rad * rad;
-		return isDetect;
+		return BaseCalculator.calcSquaredDist(getUIX(id), correctedLocationY, x, correctedY) < rad * rad;
 	}
 	
 }

@@ -2,16 +2,8 @@ package com.honestastrology.glblocks;
 
 import java.util.Random;
 
-import com.google.android.gms.ads.AdError;
-import com.google.android.gms.ads.AdRequest;
 //import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.FullScreenContentCallback;
-import com.google.android.gms.ads.LoadAdError;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.ResponseInfo;
-import com.google.android.gms.ads.interstitial.InterstitialAd;
-import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -20,12 +12,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-
-import static android.content.ContentValues.TAG;
 
 public class GLBlocksActivity extends BlocksCommonActivity {
 	
@@ -75,6 +65,7 @@ public class GLBlocksActivity extends BlocksCommonActivity {
 		playStageSong();
 		setGLSurfaceView();
 		adInitialize();
+		tutorialCheck();
 		Log.e("onCreate","through onCreate");
 	}
 	
@@ -248,6 +239,54 @@ public class GLBlocksActivity extends BlocksCommonActivity {
 		AdState.makeBannerAd(
 						this ,
 						findViewById( R.id.on_play_ad_layout ));
+	}
+	
+	private void tutorialCheck(){
+		if( _sceneNumber == 1 ){
+			startTutorials();
+		} else if ( _sceneNumber == 3){
+			showTutorialMultipleMoveDialog();
+		}
+	}
+	
+	private void startTutorials(){
+		showTutorialDialog(R.drawable.tutorial_move, 
+				           "Next", 
+				           (dialogInterface, i)->{showTutorialRestrictDialog();});
+	}
+	
+	private void showTutorialRestrictDialog(){
+		showTutorialDialog(R.drawable.tutorial_restrict,
+				           "Next",
+				           (dialogInterface, i)->{showTutorialFillUpDialog();});
+	}
+	
+	private void showTutorialFillUpDialog(){
+		showTutorialDialog(R.drawable.tutorial_fillup,
+				           "OK",
+				            null );
+	}
+	
+	private void showTutorialMultipleMoveDialog(){
+		showTutorialDialog(R.drawable.tutorial_automulti,
+				           "OK",
+				           null );
+	}
+	
+	private void showTutorialDialog(int imageResourceId,
+									String buttonText,
+									DialogInterface.OnClickListener listener){
+		ImageView imageView = new ImageView( this );
+		imageView.setImageResource( imageResourceId );
+		imageView.setBackgroundColor(getResources().getColor(R.color.black));
+		AlertDialog tutorialDialog = new AlertDialog.Builder(this)
+											 .setView(imageView)
+											 .setPositiveButton( buttonText, listener)
+											 .setCancelable(false)
+											 .create();
+		tutorialDialog.show();
+		Button ok_button = tutorialDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+		ok_button.setBackgroundColor(getResources().getColor(R.color.gray));
 	}
 	
 	private void createIntentForReturnStageSelect(){
