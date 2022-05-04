@@ -70,9 +70,6 @@ public class UIManager {
 		_uiCount      = uiCount;
 		_radioUIGroup = RadioUIGroup.getInstance();
 		
-//		prepareMiniBar();
-//		_viewProcessorRef = viewProcessorRef;
-		
 		return uiEnums;
 	}
 	
@@ -139,62 +136,6 @@ public class UIManager {
 	
 	public void drawUI(){
 		GLES20.glDisable( GLES20.GL_DEPTH_TEST );
-		
-		//軸固定ボタン横のAXIS BARを描画する
-		
-		
-//		float[] areaBoxMMatrix = calcModelMatrix(ObjManager.getBlueAreaCube());
-//		Matrix.scaleM(areaBoxMMatrix, 0,
-//				1.0f/areaBoxMMatrix[0], 1.0f/areaBoxMMatrix[5], 1.0f/areaBoxMMatrix[10] );
-//		Matrix.multiplyMM(
-//				_currentMiniXM, 0,
-//				areaBoxMMatrix, 0,
-//				_axisXMatrix,   0 
-//		);
-//		Matrix.multiplyMM(
-//				_currentXMVP, 0,
-//				_viewProcessorRef.computeVPMatrix(), 0,
-//				_currentMiniXM, 0 );
-//		_currentXMVP[12] = FixedUIEnum.axisZRadio.getAllocation()[0];
-//		_currentXMVP[13] = FixedUIEnum.axisZRadio.getAllocation()[1];
-//		_currentXMVP[14] = -0.5f;
-//		_currentXMVP[15] = 1.0f;
-//		_miniAxisX.setMVPMatrix(_currentXMVP);
-//		
-//		Matrix.multiplyMM(
-//				_currentMiniYM, 0,
-//				areaBoxMMatrix, 0,
-//				_axisYMatrix,   0
-//		);
-////		Matrix.rotateM(_currentMiniYM,0,areaBoxMMatrix,0,90.0f,1.0f,0.0f,0.0f);
-//		Matrix.multiplyMM(
-//				_currentYMVP, 0,
-//				_viewProcessorRef.computeVPMatrix(), 0,
-//				_currentMiniYM, 0 );
-//		_currentYMVP[12] = FixedUIEnum.axisZRadio.getAllocation()[0];
-//		_currentYMVP[13] = FixedUIEnum.axisZRadio.getAllocation()[1];
-//		_currentYMVP[14] = -0.5f;
-//		_currentYMVP[15] = 1.0f;
-//		_miniAxisY.setMVPMatrix(_currentYMVP);
-//		
-//		Matrix.multiplyMM(
-//				_currentMiniZM, 0,
-//				areaBoxMMatrix, 0,
-//				_axisZMatrix,   0
-//		);
-//		Matrix.multiplyMM(
-//				_currentZMVP, 0,
-//				_viewProcessorRef.computeVPMatrix(), 0,
-//				_currentMiniZM, 0 );
-//		_currentZMVP[12] = FixedUIEnum.axisZRadio.getAllocation()[0];
-//		_currentZMVP[13] = FixedUIEnum.axisZRadio.getAllocation()[1];
-//		_currentZMVP[14] = -0.5f;
-//		_currentZMVP[15] = 1.0f;
-//		_miniAxisZ.setMVPMatrix(_currentZMVP);
-//		
-//		_miniAxisX.drawObject();
-//		_miniAxisY.drawObject();
-//		_miniAxisZ.drawObject();
 		
 		//GUIを描画する
 		for(int i=0;i<_uiCount;i++){

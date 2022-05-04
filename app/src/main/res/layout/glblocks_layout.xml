@@ -44,6 +44,6 @@
 		android:layout_width="@dimen/ad_width_in_play"
 		android:orientation="horizontal"
 		android:layout_gravity="top|right"
-		android:background="@color/gray">
+		android:background="@color/peacock_dark">
 	</LinearLayout>
 </FrameLayout>
