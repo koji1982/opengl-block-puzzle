@@ -6,6 +6,7 @@ import java.util.Map;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -44,7 +45,10 @@ public class StageListView extends BlocksCommonActivity implements View.OnClickL
 		pageDecide();
 		setContentView( R.layout.stage_list );
 		settingView();
-		if( AdState.isValid() ){
+		if( BuildConfig.DEBUG ){
+			Log.i("DEBUG ", "AVOID DISPLAY AD");
+		} else {
+			Log.i("RELEASE BUILD", "DISPLAY AD");
 			_stageListAd = findViewById( R.id.stage_list_ad );
 			AdState.makeBannerAd( this, _stageListAd );
 		}

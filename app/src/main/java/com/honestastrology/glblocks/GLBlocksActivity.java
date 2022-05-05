@@ -49,7 +49,6 @@ public class GLBlocksActivity extends BlocksCommonActivity {
 	public static final int  RETURN_BUTTON = 9;
 	public static final int RESTART_BUTTON = 10;
 	private Intent intent;
-	private int adRate = 20; // * 10 % 広告表示の確率
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
@@ -311,14 +310,6 @@ public class GLBlocksActivity extends BlocksCommonActivity {
 		launchIntent();
 	}
 	
-	private void decideAdRate(int result){
-		if(result <= _bestScore){
-			adRate = 0;
-		}else{
-			adRate = 15;
-		}
-	}
-	
 	private void launchIntent(){
 //		if(isRestarting()){
 //			setRestarting(false);
@@ -332,6 +323,11 @@ public class GLBlocksActivity extends BlocksCommonActivity {
 	}
 	
 	private void adInitialize(){
+		if(BuildConfig.DEBUG) {
+			Log.i("DEBUG ", "AVOID DISPLAY AD");
+			return;
+		}
+		Log.i("RELEASE BUILD", "DISPLAY AD");
 		AdState.initialize( this );
 		AdState.makeBannerAd(
 						this,
