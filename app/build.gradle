@@ -9,8 +9,8 @@ android {
         applicationId "com.honestastrology.glblocks"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 32
-        versionName "3.2"
+        versionCode 33
+        versionName "3.3"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -20,6 +20,9 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable true
         }
     }
     compileOptions {
