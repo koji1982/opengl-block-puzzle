@@ -19,6 +19,10 @@ public class GLRadioUI extends GLBaseFixedParticle {
 		if( MotionEvent.ACTION_DOWN != GLBaseSurfaceView.getEventAction()){
 			return;
 		}
+		if(radioGroupIndex == GeometricCalculator.getAxisRadioInt()){
+			_radioUIGroup.clearRadio();
+			return;
+		}
 		_radioUIGroup.changeAxisSelected(radioGroupIndex);
 	}
 	

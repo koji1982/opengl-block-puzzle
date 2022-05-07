@@ -43,8 +43,7 @@ public class RadioUIGroup {
 		for(int i=0,j=_radioUIList.size();i<j;i++){
 			if(i==index){
 				_radioUIList.get(i).setAxis();
-			}
-			else{
+			}else{
 				_radioUIList.get(i).setUsualId();
 			}
 		}
