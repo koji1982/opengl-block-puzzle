@@ -107,6 +107,19 @@ public class UITouchDetector {
 			return true;
 		}
 		
+		if(onCircle(AXIS_X_RADIO,commonAxisRadius,x,y)){
+			detectInt = AXIS_X_RADIO;
+			return true;
+		}
+		if(onCircle(AXIS_Y_RADIO,commonAxisRadius,x,y)){
+			detectInt = AXIS_Y_RADIO;
+			return true;
+		}
+		if(onCircle(AXIS_Z_RADIO,commonAxisRadius,x,y)){
+			detectInt = AXIS_Z_RADIO;
+			return true;
+		}
+		
 		//三つのrectangleボタン(multi３種)は下端を基準点として表示されているようなので
 		//y値の判定もそれに合わせて行う
 		if(Math.abs(getUIX(MULTIPLE_BUTTON)-x)<commonRectangleRadiusX
@@ -142,18 +155,6 @@ public class UITouchDetector {
 		}
 		if(onCircle(LEFT_BUTTON,commonCameraRadius,x,y)){
 			detectInt = LEFT_BUTTON;
-			return true;
-		}
-		if(onCircle(AXIS_X_RADIO,commonAxisRadius,x,y)){
-			detectInt = AXIS_X_RADIO;
-			return true;
-		}
-		if(onCircle(AXIS_Y_RADIO,commonAxisRadius,x,y)){
-			detectInt = AXIS_Y_RADIO;
-			return true;
-		}
-		if(onCircle(AXIS_Z_RADIO,commonAxisRadius,x,y)){
-			detectInt = AXIS_Z_RADIO;
 			return true;
 		}
 		return false;
