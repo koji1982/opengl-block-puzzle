@@ -26,10 +26,12 @@ class AdState {
     
     private static final String INTERSTITIAL_TEST_ID = "ca-app-pub-3940256099942544/1033173712";
     private static final String MOVIE_TEST_ID        = "ca-app-pub-3940256099942544/8691691433";
-    private static final String BANNER_TEST_ID       = "ca-app-pub-2263172161263292/2334486566";
+    private static final String BANNER_TEST_ID       = "ca-app-pub-3940256099942544/6300978111";
     
     private static final String INTERSTITIAL_AD_ID   = "ca-app-pub-2263172161263292/1566155233";
     private static final String BANNER_AD_ID         = "ca-app-pub-2263172161263292/6435338533";
+    
+    private static String _actualBannerAdId;
     
     private static AdView         _bannerAd;
     private static InterstitialAd _interstitialAd;
@@ -45,13 +47,13 @@ class AdState {
         }
     }
     
-    static boolean isValid(){
-        return true;
+    static void decideBannerAdId(){
+        _actualBannerAdId = BuildConfig.DEBUG ? BANNER_TEST_ID : BANNER_AD_ID;
     }
     
     static void makeBannerAd(Activity activity, ViewGroup adLayout){
         _bannerAd = new AdView(activity);
-        _bannerAd.setAdUnitId( BANNER_AD_ID );
+        _bannerAd.setAdUnitId( _actualBannerAdId );
         _bannerAd.setAdSize( AdSize.BANNER );
         //LayoutParams側のgravityは他のViewに対しての位置関係(xmlのlayout_gravity)
         //を表し、LinearLayout側のsetGravity()はその内側のchildViewに掛かる

@@ -45,13 +45,8 @@ public class StageListView extends BlocksCommonActivity implements View.OnClickL
 		pageDecide();
 		setContentView( R.layout.stage_list );
 		settingView();
-		if( BuildConfig.DEBUG ){
-			Log.i("DEBUG ", "AVOID DISPLAY AD");
-		} else {
-			Log.i("RELEASE BUILD", "DISPLAY AD");
-			_stageListAd = findViewById( R.id.stage_list_ad );
-			AdState.makeBannerAd( this, _stageListAd );
-		}
+		_stageListAd = findViewById( R.id.stage_list_ad );
+		AdState.makeBannerAd( this, _stageListAd );
 		SlideAnimation.createInstance(this);
 		decideSlideAnim();
 		SoundManager.changeSong(SoundManager.SONG_TITLE);
