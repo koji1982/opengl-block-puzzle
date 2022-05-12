@@ -323,11 +323,6 @@ public class GLBlocksActivity extends BlocksCommonActivity {
 	}
 	
 	private void adInitialize(){
-		if(BuildConfig.DEBUG) {
-			Log.i("DEBUG ", "AVOID DISPLAY AD");
-			return;
-		}
-		Log.i("RELEASE BUILD", "DISPLAY AD");
 		AdState.initialize( this );
 		AdState.makeBannerAd(
 						this,

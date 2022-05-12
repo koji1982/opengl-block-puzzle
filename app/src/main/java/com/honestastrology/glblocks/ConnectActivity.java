@@ -180,11 +180,6 @@ public class ConnectActivity extends Activity implements OnClickListener{
 	}
 	
 	private void initializeAd(){
-		if(BuildConfig.DEBUG) {
-			Log.i("DEBUG BUILD", "AVOID DISPLAY AD");
-			return;
-		}
-		Log.i("RELEASE BUILD", "DISPLAY AD");
 		AdState.initialize( this );
 		AdState.makeBannerAd(
 				this,
